@@ -56,13 +56,23 @@ function generateMoodButtons() {
         container.appendChild(wrapper);
     });
 }
+function openMoodPopup() {
+    document.getElementById("newMoodPopup").classList.remove("hidden");
+}
+
+function closeMoodPopup() {
+    document.getElementById("newMoodPopup").classList.add("hidden");
+}
 
 function addNewMood() {
-    const newMood = prompt("Sisesta uus tuju:");
-    if (!newMood || userMoods[newMood]) return;
-    
-    userMoods[newMood] = "#ffffff"; // Vaikimisi värv
+    const newMoodName = document.getElementById('newMoodInput').value.trim();
+    if (!newMoodName || userMoods[newMoodName]) return;
+
+    const newMoodColor = document.getElementById('newMoodColor').value;
+    userMoods[newMoodName] = newMoodColor;
+
     generateMoodButtons();
+    closeMoodPopup();
 }
 
 function saveMood() {
